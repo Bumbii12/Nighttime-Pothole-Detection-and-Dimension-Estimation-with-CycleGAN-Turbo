@@ -16,6 +16,18 @@ Penelitian ini memiliki dua tujuan. Tujuan pertama adalah menganalisis pengaruh 
 
 Urutan baca yang disarankan: mulai dari repositori 3 untuk bagian deteksi, lalu repositori 1 dan 2 untuk data dan ground truth, dan terakhir repositori 4 untuk estimasi dimensi.
 
+## Dataset latih di Kaggle
+
+Dataset akhir ketiga skenario pelatihan dipublikasikan di Kaggle. Data validasi (200 citra) dan data uji (100 citra) sama pada ketiga skenario.
+
+| Skenario | Citra latih akhir | Dataset |
+|---|---|---|
+| Baseline | 2.100 | [the-basic](https://www.kaggle.com/datasets/pororozagi/the-basic) |
+| Sintetis 50% | 3.150 | [half-50](https://www.kaggle.com/datasets/pororozagi/half-50) |
+| Sintetis 100% | 4.200 | [aug-cycle](https://www.kaggle.com/datasets/pororozagi/aug-cycle) |
+
+Prapemrosesan dan augmentasi dijalankan melalui Roboflow (resize stretch 640 × 640 piksel, histogram equalization, dan pengali 3×). Dokumentasi Roboflow tidak menyebutkan pengaturan seed, sehingga citra augmentasi yang identik tidak dapat dibangkitkan ulang. Karena itu dataset akhir ini dirilis agar eksperimen dapat diulang dengan data yang sama persis.
+
 ## Hasil utama
 
 **Deteksi.** Pada data uji sekunder malam hari, penambahan data sintetis 50% memberi hasil terbaik pada ketiga varian YOLOv12, dengan kenaikan mAP@0.5 sebesar 9,1% hingga 13,9% dibanding baseline. Penambahan 100% hanya menaikkan mAP@0.5 sebesar 1,7% hingga 7,7%. Model terpilih adalah YOLOv12s + sintetis 50% (mAP@0.5 0,6616; mAP@0.5:0.95 0,3317).
